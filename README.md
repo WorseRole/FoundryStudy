@@ -48,13 +48,13 @@
 
 ---
 
-### Day 3 — Vault 存取 ETH ⬜
+### Day 3 — Vault 存取 ETH ✅
 
-- [ ] 新建 `src/Vault.sol`（`deposit` / `withdraw`）
-- [ ] 新建 `test/Vault.t.sol`
-- [ ] 使用 `vm.deal`、`deposit{value:}`、`call{value:}`
-- [ ] 理解 CEI：先改 `balances`，再转 ETH
-- [ ] VaultTest：**5 passed**，全项目 **11 passed**
+- [x] 新建 `src/Vault.sol`（`deposit` / `withdraw`）
+- [x] 新建 `test/Vault.t.sol`
+- [x] 使用 `vm.deal`、`deposit{value:}`、`call{value:}`
+- [x] 理解 CEI：先改 `balances`，再转 ETH
+- [x] VaultTest：**5 passed**
 
 **对应笔记：** 知识地图 03 重入攻击 · Kinza `supply/withdraw` 简化版
 
@@ -307,7 +307,7 @@
 |------|-----|----------|--------|
 | 2026-09-08 | 1 | Counter decrement + require + revert 测试 | 4 passed |
 | 2026-09-08 | 2 | Ownable + onlyOwner + prank 测试 | 6 passed |
-| | 3 | | |
+| 2026-09-10 | 3 | Vault deposit/withdraw + CEI + 5 测 | Vault 5 passed |
 | | 4 | | |
 | | 5 | | |
 
