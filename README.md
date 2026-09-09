@@ -10,14 +10,14 @@
 
 | 阶段 | 内容 | 天数 | 状态 |
 |------|------|------|------|
-| 0 | Foundry 热身 | Day 1-5 | 🔄 进行中 |
+| 0 | Foundry 热身 | Day 1-5 | 🔄 进行中（3/5） |
 | 1 | Sepolia 部署 | Day 6-10 | ⬜ 未开始 |
 | 2 | 合约升级 Proxy | Day 11-15 | ⬜ 未开始 |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：Day 3**
+**当前位置：Day 4**（Day 3 Vault 已完成 · 全仓 18 tests passed）
 
 ---
 
@@ -54,7 +54,14 @@
 - [x] 新建 `test/Vault.t.sol`
 - [x] 使用 `vm.deal`、`deposit{value:}`、`call{value:}`
 - [x] 理解 CEI：先改 `balances`，再转 ETH
-- [x] VaultTest：**5 passed**
+- [x] VaultTest：**5 passed**，全项目 **18 passed**
+
+**学到：**
+- `payable` + `msg.value`：合约通过 `deposit()` 收 ETH，并记入 `balances[msg.sender]`
+- `vm.deal`：测试里给地址「发 ETH」；`deposit{value:}`：调用时附带 ETH
+- `call{value: amount}("")`：向用户转 ETH，比 `transfer` 更灵活（gas 上限、兼容合约地址）
+- **CEI 模式**：Checks（校验）→ Effects（先改 `balances`）→ Interactions（再 `call` 转 ETH）
+- `expectRevert` 字符串必须和 `require` 文案**完全一致**（大小写、空格都要对）
 
 **对应笔记：** 知识地图 03 重入攻击 · Kinza `supply/withdraw` 简化版
 
@@ -307,9 +314,9 @@
 |------|-----|----------|--------|
 | 2026-09-08 | 1 | Counter decrement + require + revert 测试 | 4 passed |
 | 2026-09-08 | 2 | Ownable + onlyOwner + prank 测试 | 6 passed |
-| 2026-09-10 | 3 | Vault deposit/withdraw + CEI + 5 测 | Vault 5 passed |
-| | 4 | | |
-| | 5 | | |
+| 2026-09-10 | 3 | Vault deposit/withdraw + CEI；练 vm.deal / prank / call{value:} | Vault 5 / 全仓 18 |
+| | 4 | 重入攻击演示（VaultVulnerable + Attacker） | |
+| | 5 | 阶段 0 复盘 | |
 
 ---
 
