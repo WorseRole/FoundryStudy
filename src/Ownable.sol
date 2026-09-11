@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.13;
+
 abstract contract Ownable {
     // owner 存储在storage中
     address public owner;
@@ -14,5 +15,4 @@ abstract contract Ownable {
         require(msg.sender == owner, "not owner");
         _;
     }
-
 }

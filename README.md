@@ -10,14 +10,14 @@
 
 | 阶段 | 内容 | 天数 | 状态 |
 |------|------|------|------|
-| 0 | Foundry 热身 | Day 1-5 | 🔄 进行中（4/5） |
+| 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
 | 1 | Sepolia 部署 | Day 6-10 | ⬜ 未开始 |
 | 2 | 合约升级 Proxy | Day 11-15 | ⬜ 未开始 |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：Day 5**（Day 4 重入演示已完成 · 全仓 20 tests passed）
+**当前位置：Day 6**（阶段 0 已完成 · 全仓 **20 tests passed**）
 
 ---
 
@@ -86,14 +86,25 @@
 
 ---
 
-### Day 5 — 阶段复盘 ⬜
+### Day 5 — 阶段复盘 ✅
 
-- [ ] `forge test` 全绿，记录总测试数
-- [ ] `forge fmt` 格式化代码
-- [ ] 口头讲一遍：Counter → Ownable → Vault → 重入
-- [ ] 把 Day 1-5 笔记补 3 行到本 README 底部「每日记录」
+- [x] `forge test` 全绿，记录总测试数（**20 passed**，4 suites）
+- [x] `forge fmt` 格式化代码
+- [x] 口头讲一遍：Counter → Ownable → Vault → 重入（见下方「阶段 0 串讲」）
+- [x] Day 1-5 笔记写入 README
 
-**阶段 0 完成标准：** 能独立写合约 + 测试 + 解释 revert 原因
+**阶段 0 完成标准：** 能独立写合约 + 测试 + 解释 revert 原因 ✅
+
+#### 阶段 0 串讲（面试/自测用）
+
+| Day | 合约 | 核心点 | 测试习惯 |
+|-----|------|--------|----------|
+| 1 | Counter | storage、`increment/decrement`、`require` 防下溢 | `assertEq`、`testFuzz`、`expectRevert` |
+| 2 | Ownable + Counter | 继承、`onlyOwner`、`msg.sender` | `vm.prank` 换调用者 |
+| 3 | Vault | `payable`、`msg.value`、`call{value:}`、**CEI** | `vm.deal`、`deposit{value:}` |
+| 4 | VaultVunlnerable + Attacker | 先 call 后改账 → 重入；同步调用栈、unwind | 对比安全 Vault 同一攻击失败 |
+
+**一句话：** 状态先改再对外 call（CEI），否则带 `receive` 的合约能在你的函数返回前再次进入你。
 
 ---
 
@@ -323,7 +334,7 @@
 | 2026-09-08 | 2 | Ownable + onlyOwner + prank 测试 | 6 passed |
 | 2026-09-10 | 3 | Vault deposit/withdraw + CEI；练 vm.deal / prank / call{value:} | Vault 5 / 全仓 18 |
 | 2026-09-12 | 4 | VaultVunlnerable + Attacker + ReentrancyTest；调用栈 / unwind | Reentrancy 2 / 全仓 20 |
-| | 5 | 阶段 0 复盘 | |
+| 2026-09-12 | 5 | 阶段 0 复盘；forge fmt；20 tests 全绿 | 20 passed |
 
 ---
 

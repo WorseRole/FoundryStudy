@@ -11,7 +11,7 @@ contract CounterTest is Test {
     address public stranger = address(0x999);
 
     function test_SetNumber_byOwner() public {
-        counter.setNumber(42);     // 默认 msg.sender = owner
+        counter.setNumber(42); // 默认 msg.sender = owner
         assertEq(counter.number(), 42);
     }
 

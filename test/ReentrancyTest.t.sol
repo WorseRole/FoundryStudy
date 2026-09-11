@@ -7,7 +7,6 @@ import "../src/Vault.sol";
 import "../src/Attacker.sol";
 
 contract ReentrancyTest is Test {
-
     // ------------ 测试1：针对不安全 Vault 的重入攻击 ------------
     function test_Reentrancy_DrainsVulnerableVault() public {
         VaultVunlnerable vault = new VaultVunlnerable();
@@ -43,5 +42,4 @@ contract ReentrancyTest is Test {
         assertEq(address(vault).balance, 5 ether);
         assertEq(vault.balances(address(this)), 5 ether);
     }
-
 }

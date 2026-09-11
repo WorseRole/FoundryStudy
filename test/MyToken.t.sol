@@ -29,14 +29,14 @@ contract MyTokenTest is Test {
         console.log(unicode"\n>>> 测试转账功能 <<<");
         console.log(unicode"转账前 - Owner余额:", token.balanceOf(owner));
         console.log(unicode"转账前 - User1余额:", token.balanceOf(user1));
-        
+
         vm.prank(owner);
         bool success = token.transfer(user1, 100 ether);
-        
+
         console.log(unicode"转账结果:", success);
         console.log(unicode"转账后 - Owner余额:", token.balanceOf(owner));
         console.log(unicode"转账后 - User1余额:", token.balanceOf(user1));
-        
+
         assertTrue(success);
         assertEq(token.balanceOf(user1), 100 ether);
         assertEq(token.balanceOf(owner), 900 ether);
@@ -45,39 +45,39 @@ contract MyTokenTest is Test {
     function testApprove() public {
         console.log(unicode"\n>>> 测试授权功能 <<<");
         console.log(unicode"授权前 - Owner对User1的授权:", token.allowance(owner, user1));
-        
+
         vm.prank(owner);
         bool success = token.approve(user1, 50 ether);
-        
+
         console.log(unicode"授权结果:", success);
         console.log(unicode"授权后 - Owner对User1的授权:", token.allowance(owner, user1));
-        
+
         assertTrue(success);
         assertEq(token.allowance(owner, user1), 50 ether);
     }
 
     function testTransferFrom() public {
         console.log(unicode"\n>>> 测试授权转账功能 <<<");
-        
+
         // 先授权
         vm.prank(owner);
         token.approve(user1, 50 ether);
         console.log(unicode"授权: Owner授权User1 50 tokens");
         console.log(unicode"授权额度:", token.allowance(owner, user1));
-        
+
         console.log(unicode"\n转账前 - Owner余额:", token.balanceOf(owner));
         console.log(unicode"转账前 - User2余额:", token.balanceOf(user2));
         console.log(unicode"剩余授权额度:", token.allowance(owner, user1));
-        
+
         // 执行授权转账
         vm.prank(user1);
         bool success = token.transferFrom(owner, user2, 30 ether);
-        
+
         console.log(unicode"\n转账结果:", success);
         console.log(unicode"转账后 - Owner余额:", token.balanceOf(owner));
         console.log(unicode"转账后 - User2余额:", token.balanceOf(user2));
         console.log(unicode"剩余授权额度:", token.allowance(owner, user1));
-        
+
         assertTrue(success);
         assertEq(token.balanceOf(user2), 30 ether);
         assertEq(token.balanceOf(owner), 970 ether);
@@ -89,11 +89,11 @@ contract MyTokenTest is Test {
         console.log(unicode"\n>>> 测试余额不足异常 <<<");
         console.log(unicode"User1余额:", token.balanceOf(user1));
         console.log(unicode"尝试转账: 1 ether");
-        
+
         vm.prank(user1);
         vm.expectRevert("insufficient balance");
         token.transfer(user2, 1 ether);
-        
+
         console.log(unicode"✓ 余额不足异常触发成功");
     }
 
@@ -102,7 +102,7 @@ contract MyTokenTest is Test {
         // Owner approves user1 to spend 50 tokens
         vm.prank(owner);
         token.approve(user1, 50 ether);
-        
+
         // user1 tries to transfer more than owner has
         vm.prank(user1);
         vm.expectRevert("insufficient balance");
@@ -114,7 +114,7 @@ contract MyTokenTest is Test {
         // Owner approves user1 to spend only 10 tokens
         vm.prank(owner);
         token.approve(user1, 10 ether);
-        
+
         // user1 tries to transfer more than approved
         vm.prank(user1);
         vm.expectRevert("insufficient allowance");

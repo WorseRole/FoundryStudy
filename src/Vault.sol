@@ -2,7 +2,6 @@
 pragma solidity ^0.8.13;
 
 contract Vault {
-
     mapping(address => uint256) public balances;
 
     // 为什么用 payable 修饰函数？ 因为这个函数需要接收以太币，如果没有 payable 修饰符，合约将无法接收以太币，调用该函数时会失败。
@@ -20,9 +19,7 @@ contract Vault {
         balances[msg.sender] -= amount;
 
         // Interactions - 发送以太币给用户
-        (bool success, ) = msg.sender.call{value: amount}("");
+        (bool success,) = msg.sender.call{value: amount}("");
         require(success, "ETH transfer failed");
     }
-
-
 }

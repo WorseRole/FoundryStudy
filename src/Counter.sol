@@ -11,7 +11,7 @@ contract Counter is Ownable {
     }
 
     function increment() public {
-        number+=2;
+        number += 2;
     }
 
     function decrement() public {

@@ -5,7 +5,6 @@ import "forge-std/Test.sol";
 import "../src/Vault.sol";
 
 contract VaultTest is Test {
-
     Vault public vault;
 
     address public alice = address(0xA11CE);
@@ -21,10 +20,9 @@ contract VaultTest is Test {
     function test_Deposit() public {
         vm.prank(alice);
         vault.deposit{value: 1 ether}();
-        
+
         assertEq(vault.balances(alice), 1 ether);
         assertEq(address(vault).balance, 1 ether);
-
     }
 
     function test_Withdraw() public {
@@ -39,7 +37,6 @@ contract VaultTest is Test {
         assertEq(vault.balances(alice), 1 ether);
         assertEq(alice.balance, beforeBal + 1 ether);
         assertEq(address(vault).balance, 1 ether);
-        
     }
 
     function test_RevertIf_ZeroDeposit() public {
@@ -58,7 +55,6 @@ contract VaultTest is Test {
     }
 
     function test_IndependentBalances() public {
-
         vm.prank(alice);
         vault.deposit{value: 3 ether}();
 
@@ -73,5 +69,4 @@ contract VaultTest is Test {
         assertEq(vault.balances(bob), 1 ether);
         assertEq(address(vault).balance, 1 ether);
     }
-
 }
