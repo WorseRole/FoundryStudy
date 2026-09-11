@@ -10,14 +10,14 @@
 
 | 阶段 | 内容 | 天数 | 状态 |
 |------|------|------|------|
-| 0 | Foundry 热身 | Day 1-5 | 🔄 进行中（3/5） |
+| 0 | Foundry 热身 | Day 1-5 | 🔄 进行中（4/5） |
 | 1 | Sepolia 部署 | Day 6-10 | ⬜ 未开始 |
 | 2 | 合约升级 Proxy | Day 11-15 | ⬜ 未开始 |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：Day 4**（Day 3 Vault 已完成 · 全仓 18 tests passed）
+**当前位置：Day 5**（Day 4 重入演示已完成 · 全仓 20 tests passed）
 
 ---
 
@@ -67,15 +67,22 @@
 
 ---
 
-### Day 4 — 重入攻击演示 ⬜
+### Day 4 — 重入攻击演示 ✅
 
-- [ ] 新建 `src/Attacker.sol`（恶意合约，在 receive 里再次 withdraw）
-- [ ] 写一个 **不安全版** `VaultVulnerable.sol`（先转 ETH 再改 balance）
-- [ ] 测试：攻击者能 drain 合约
-- [ ] 对比安全版 Vault（CEI）攻击失败
+- [x] 新建 `src/Attacker.sol`（恶意合约，在 receive 里再次 withdraw）
+- [x] 写一个 **不安全版** `VaultVunlnerable.sol`（先转 ETH 再改 balance）
+- [x] 测试：攻击者能 drain 合约（`ReentrancyTest` 2 passed）
+- [x] 对比安全版 Vault（CEI）攻击失败
 - [ ] 可选：加 `ReentrancyGuard`
 
-**学到：** 重入原理、Checks-Effects-Interactions、为什么 DeFi 安全重要
+**学到：**
+- **重入不是异步**：`call` 期间外层 `withdraw` 暂停，Attacker `receive` 里再进 `withdraw`，同一笔交易、同一调用栈
+- 不安全 Vault：嵌套 `withdraw` 时 `balances` 仍是旧值，可多次 `require` 通过并转 ETH
+- **unwind**：最里层 `call` 返回后先改账；多层 `-=` 会 **0x11 underflow** → 整笔 revert（可用 `call` 后 `if (balances < amount) return` 避免演示被 revert 打断）
+- `receive` 里用 `vault.balance >= 1 ether`（不是 `>`），否则池里剩最后 1 ether 时不再提
+- 安全 Vault（CEI）：`receive` 里读到 `balances == 0`，重入打不穿
+
+**对应笔记：** 知识地图 03 重入 · CEI
 
 ---
 
@@ -315,7 +322,7 @@
 | 2026-09-08 | 1 | Counter decrement + require + revert 测试 | 4 passed |
 | 2026-09-08 | 2 | Ownable + onlyOwner + prank 测试 | 6 passed |
 | 2026-09-10 | 3 | Vault deposit/withdraw + CEI；练 vm.deal / prank / call{value:} | Vault 5 / 全仓 18 |
-| | 4 | 重入攻击演示（VaultVulnerable + Attacker） | |
+| 2026-09-12 | 4 | VaultVunlnerable + Attacker + ReentrancyTest；调用栈 / unwind | Reentrancy 2 / 全仓 20 |
 | | 5 | 阶段 0 复盘 | |
 
 ---
