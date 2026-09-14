@@ -114,16 +114,16 @@
 
 ### Day 6 — 环境配置 ⬜
 
+> **逐步说明**：[`DAY6-环境配置.md`](DAY6-环境配置.md)
+
 - [ ] 注册 [Alchemy](https://www.alchemy.com/) 或 Infura，拿 Sepolia RPC URL
-- [ ] 安装 [MetaMask](https://metamask.io/)，添加 Sepolia 网络
+- [ ] 安装 [MetaMask](https://metamask.io/)，添加 Sepolia 网络（Chain ID `11155111`）
 - [ ] 领 Sepolia ETH（[Google Cloud Faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) 或 Alchemy Faucet）
-- [ ] 新建 `.env`（**不要 commit**）：
-  ```
-  SEPOLIA_RPC_URL=https://...
-  PRIVATE_KEY=0x...
-  ETHERSCAN_API_KEY=...
-  ```
-- [ ] `.gitignore` 加入 `.env`
+- [ ] `cp .env.example .env` 并填写三变量（**不要 commit** `.env`）
+- [x] `.gitignore` 已忽略 `.env`
+- [ ] **验收**：`forge test` 全绿 + `forge script script/Counter.s.sol --rpc-url sepolia -vvv` 模拟成功
+
+仓库已配置：`foundry.toml`（`sepolia` RPC / Etherscan）、`script/Counter.s.sol`（读 `PRIVATE_KEY` 并 `console.log` 地址）。
 
 ---
 
