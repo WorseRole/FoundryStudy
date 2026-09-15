@@ -11,13 +11,13 @@
 | 阶段 | 内容 | 天数 | 状态 |
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
-| 1 | Sepolia 部署 | Day 6-10 | ⬜ 未开始 |
+| 1 | Sepolia 部署 | Day 6-10 | **进行中（Day 7）** |
 | 2 | 合约升级 Proxy | Day 11-15 | ⬜ 未开始 |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：Day 6**（阶段 0 已完成 · 全仓 **20 tests passed**）
+**当前位置：Day 7**（Day 6 环境 ✅ · 全仓 **20 tests passed**）
 
 ---
 
@@ -112,16 +112,16 @@
 
 > 目标：合约真正上链，Etherscan 可查。
 
-### Day 6 — 环境配置 ⬜
+### Day 6 — 环境配置 ✅
 
-> **逐步说明**：[`DAY6-环境配置.md`](DAY6-环境配置.md)
+> **逐步说明 + 三变量原理**：[`DAY6-环境配置.md`](DAY6-环境配置.md)
 
-- [ ] 注册 [Alchemy](https://www.alchemy.com/) 或 Infura，拿 Sepolia RPC URL
-- [ ] 安装 [MetaMask](https://metamask.io/)，添加 Sepolia 网络（Chain ID `11155111`）
-- [ ] 领 Sepolia ETH（[Google Cloud Faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) 或 Alchemy Faucet）
-- [ ] `cp .env.example .env` 并填写三变量（**不要 commit** `.env`）
+- [x] 注册 [Alchemy](https://www.alchemy.com/) 或 Infura，拿 Sepolia RPC URL → `.env` 的 `SEPOLIA_RPC_URL`
+- [x] 安装 [MetaMask](https://metamask.io/)，添加 Sepolia 网络（Chain ID `11155111`）
+- [x] 领 Sepolia ETH（水龙头）
+- [x] `cp .env.example .env` 并填写三变量（**不要 commit** `.env`）
 - [x] `.gitignore` 已忽略 `.env`
-- [ ] **验收**：`forge test` 全绿 + `forge script script/Counter.s.sol --rpc-url sepolia -vvv` 模拟成功
+- [x] **验收**：`forge test` 20 passed + `forge script script/Counter.s.sol --rpc-url sepolia -vvv` 模拟成功（2026-09-15）
 
 仓库已配置：`foundry.toml`（`sepolia` RPC / Etherscan）、`script/Counter.s.sol`（读 `PRIVATE_KEY` 并 `console.log` 地址）。
 
@@ -335,6 +335,7 @@
 | 2026-09-10 | 3 | Vault deposit/withdraw + CEI；练 vm.deal / prank / call{value:} | Vault 5 / 全仓 18 |
 | 2026-09-12 | 4 | VaultVunlnerable + Attacker + ReentrancyTest；调用栈 / unwind | Reentrancy 2 / 全仓 20 |
 | 2026-09-12 | 5 | 阶段 0 复盘；forge fmt；20 tests 全绿 | 20 passed |
+| 2026-09-15 | 6 | Alchemy RPC + MetaMask + `.env` 三变量；Sepolia 模拟部署脚本通过 | 20 passed |
 
 ---
 
