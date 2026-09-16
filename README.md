@@ -11,13 +11,13 @@
 | 阶段 | 内容 | 天数 | 状态 |
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
-| 1 | Sepolia 部署 | Day 6-10 | **进行中（Day 7）** |
+| 1 | Sepolia 部署 | Day 6-10 | **进行中（Day 8）** |
 | 2 | 合约升级 Proxy | Day 11-15 | ⬜ 未开始 |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：Day 7**（Day 6 环境 ✅ · 全仓 **20 tests passed**）
+**当前位置：Day 8**（Day 7 Counter Sepolia 已部署并 Verified · 全仓 **20 tests passed**）
 
 ---
 
@@ -127,12 +127,12 @@
 
 ---
 
-### Day 7 — 部署 Counter ⬜
+### Day 7 — 部署 Counter ✅
 
-- [ ] 完善 `script/Counter.s.sol`
-- [ ] 本地模拟：`forge script script/Counter.s.sol --rpc-url $SEPOLIA_RPC_URL`
-- [ ] 真部署：`forge script ... --broadcast --verify`
-- [ ] 记录合约地址到本 README「部署记录」
+- [x] 完善 `script/Counter.s.sol`（`startBroadcast` / `new Counter` / `console.log`）
+- [x] 本地模拟：`forge script script/Counter.s.sol --rpc-url sepolia`
+- [x] 真部署 + 验证：`--broadcast --verify`（2026-09-16）
+- [x] 合约地址见下方「部署记录」· Etherscan **Verified**
 
 ---
 
@@ -317,7 +317,7 @@
 
 | 合约 | 网络 | 地址 | 部署日期 |
 |------|------|------|----------|
-| Counter | Sepolia | _待填_ | _待填_ |
+| Counter | Sepolia | [0x00E60d96e3ccbe461700bEF3FC2B8b61EfAd2A1c](https://sepolia.etherscan.io/address/0x00E60d96e3ccbe461700bEF3FC2B8b61EfAd2A1c) | 2026-09-16 |
 | Vault | Sepolia | _待填_ | _待填_ |
 | CounterProxy | Sepolia | _待填_ | _待填_ |
 | CounterV2 | Sepolia | _待填_ | _待填_ |
@@ -336,6 +336,7 @@
 | 2026-09-12 | 4 | VaultVunlnerable + Attacker + ReentrancyTest；调用栈 / unwind | Reentrancy 2 / 全仓 20 |
 | 2026-09-12 | 5 | 阶段 0 复盘；forge fmt；20 tests 全绿 | 20 passed |
 | 2026-09-15 | 6 | Alchemy RPC + MetaMask + `.env` 三变量；Sepolia 模拟部署脚本通过 | 20 passed |
+| 2026-09-16 | 7 | Counter Sepolia 部署 + Etherscan verify；tx `0xfc14…6cef` | 20 passed |
 
 ---
 
