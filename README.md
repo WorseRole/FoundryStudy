@@ -11,13 +11,13 @@
 | 阶段 | 内容 | 天数 | 状态 |
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
-| 1 | Sepolia 部署 | Day 6-10 | **进行中（Day 8）** |
+| 1 | Sepolia 部署 | Day 6-10 | **进行中（Day 9）** |
 | 2 | 合约升级 Proxy | Day 11-15 | ⬜ 未开始 |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：Day 8**（Day 7 Counter Sepolia 已部署并 Verified · 全仓 **20 tests passed**）
+**当前位置：Day 9**（Day 8 Vault 已部署 Sepolia · deposit/`balances` 链上验证可选补做 · **20 tests passed**）
 
 ---
 
@@ -136,12 +136,12 @@
 
 ---
 
-### Day 8 — 部署 Vault ⬜
+### Day 8 — 部署 Vault（部署 ✅）
 
-- [ ] 写 `script/Vault.s.sol`
-- [ ] 部署 Vault 到 Sepolia
-- [ ] 在 Etherscan 上手动调 `deposit()`（发 0.01 ETH）
-- [ ] 在 Etherscan 读 `balances(yourAddress)`
+- [x] 写 `script/Vault.s.sol`
+- [x] 部署 Vault 到 Sepolia（2026-09-16 · 见部署记录）
+- [ ] 链上 `deposit()` + 读 `balances`（`cast send` / Etherscan，见知识库 [Forge/Cast 链上命令](https://github.com/WorseRole/web3-learning-docs/blob/main/docs/foundry/forge-cast-%E9%93%BE%E4%B8%8A%E5%91%BD%E4%BB%A4.md)）
+- [ ] 在 Etherscan 读 `balances(yourAddress)` 与存入一致
 
 ---
 
@@ -318,7 +318,7 @@
 | 合约 | 网络 | 地址 | 部署日期 |
 |------|------|------|----------|
 | Counter | Sepolia | [0x00E60d96e3ccbe461700bEF3FC2B8b61EfAd2A1c](https://sepolia.etherscan.io/address/0x00E60d96e3ccbe461700bEF3FC2B8b61EfAd2A1c) | 2026-09-16 |
-| Vault | Sepolia | _待填_ | _待填_ |
+| Vault | Sepolia | [0x605edB790b07dA3809E61ba24fbd4a29b9ad3D32](https://sepolia.etherscan.io/address/0x605edB790b07dA3809E61ba24fbd4a29b9ad3D32) | 2026-09-16 |
 | CounterProxy | Sepolia | _待填_ | _待填_ |
 | CounterV2 | Sepolia | _待填_ | _待填_ |
 
@@ -337,6 +337,7 @@
 | 2026-09-12 | 5 | 阶段 0 复盘；forge fmt；20 tests 全绿 | 20 passed |
 | 2026-09-15 | 6 | Alchemy RPC + MetaMask + `.env` 三变量；Sepolia 模拟部署脚本通过 | 20 passed |
 | 2026-09-16 | 7 | Counter Sepolia 部署 + Etherscan verify；tx `0xfc14…6cef` | 20 passed |
+| 2026-09-16 | 8 | Vault Sepolia 部署 + verify → `0x605e…3D32` | 20 passed |
 
 ---
 
