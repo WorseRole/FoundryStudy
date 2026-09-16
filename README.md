@@ -157,11 +157,14 @@
 
 ### Day 10 — 阶段复盘 ⬜
 
-- [ ] 两个合约 Sepolia 可查、可交互
-- [ ] 截图 Etherscan 页面存档（投简历用）
-- [ ] 理解：calldata、nonce、gas、交易生命周期（对照知识地图 01）
+> **不要求 Etherscan 截图**；链上操作以 [知识库 · Forge/Cast 链上命令](https://worserole.github.io/web3-learning-docs/foundry/forge-cast-链上命令.html) 为准（`forge script` 部署、`cast send` / `cast call` 交互）。
 
-**阶段 1 完成标准：** 独立完成一次 testnet 部署 + Etherscan 验证
+- [ ] **Sepolia 可查、可交互**：Counter / Vault 地址在 [部署记录](#部署记录)；需要时用 `cast call` / `cast send`（见知识库），不必再录屏
+- [ ] **读** [知识地图 01 · §9–15 交易生命周期](https://worserole.github.io/web3-learning-docs/web3/恢复基础，建立知识地图.html)（calldata、签名、RPC、nonce、Mempool、EVM、gas、Receipt）
+- [ ] **串讲 1～2 分钟**（录音或打字）：用 **自己的 Sepolia 经历**（部署 Counter/Vault、`increment`、`deposit`/`withdraw`、From 地址 **nonce** 在 Etherscan tx 详情可见）串起上述概念
+- [ ] （可选）在知识库 `阶段1-Sepolia` Day 10 下粘贴串讲稿，或新建 `阶段1-串讲.md`
+
+**阶段 1 完成标准：** testnet 部署 + 验证（Day 7–8 ✅）+ 能口述交易从签名到改 State 的全链路（Day 10）
 
 ---
 
