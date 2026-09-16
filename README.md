@@ -11,13 +11,13 @@
 | 阶段 | 内容 | 天数 | 状态 |
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
-| 1 | Sepolia 部署 | Day 6-10 | **进行中（Day 9）** |
+| 1 | Sepolia 部署 | Day 6-10 | **进行中（Day 10）** |
 | 2 | 合约升级 Proxy | Day 11-15 | ⬜ 未开始 |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：Day 9**（Day 8 Vault 已部署 Sepolia · deposit/`balances` 链上验证可选补做 · **20 tests passed**）
+**当前位置：Day 10**（Day 9 部署流程文档 ✅ · **20 tests passed**）
 
 ---
 
@@ -145,11 +145,13 @@
 
 ---
 
-### Day 9 — 部署脚本 + 文档 ⬜
+### Day 9 — 部署脚本 + 文档 ✅
 
-- [ ] 写 `script/DeployAll.s.sol` 或整理 deploy 流程
-- [ ] README 补「部署记录」表格（合约名 / 地址 / 网络 / 日期）
-- [ ] 能口头讲：forge script → broadcast → verify 流程
+- [x] 整理 deploy 流程 → [`DEPLOY-流程.md`](DEPLOY-流程.md)
+- [x] 「部署记录」表格（Counter / Vault · Sepolia · 2026-09-16）
+- [x] 流程要点：合约 + test → script（`console.log` 地址）→ 模拟 → `--broadcast --verify`
+- [ ] （可选）`DeployAll.s.sol` 仅本地模拟
+- [ ] 口头串讲 1 分钟（自练）
 
 ---
 
@@ -341,22 +343,28 @@
 
 ---
 
+## Sepolia 发布流程（摘要）
+
+> 完整步骤：[DEPLOY-流程.md](./DEPLOY-流程.md)
+
+1. **`src/` 合约 + `test/`** → `forge test`
+2. **`script/Xxx.s.sol`** → `new Xxx()` + **`console.log` 合约地址**
+3. 模拟：`forge script script/Xxx.s.sol --rpc-url sepolia -vvv`
+4. 上链：`forge script script/Xxx.s.sol --rpc-url sepolia --broadcast --verify -vvvv`
+
+链上读/写见 [知识库 · Forge/Cast 链上命令](https://worserole.github.io/web3-learning-docs/foundry/forge-cast-链上命令.html)。
+
 ## 常用命令
 
 ```bash
 # 测试
 forge test
 forge test --match-contract VaultTest -vv
-forge test -vvv   # 更详细 trace
-
-# 格式化
 forge fmt
 
-# 部署（阶段 1 用）
-source .env
-forge script script/Counter.s.sol:CounterScript \
-  --rpc-url $SEPOLIA_RPC_URL \
-  --broadcast --verify
+# 部署示例（见 DEPLOY-流程.md）
+forge script script/Counter.s.sol --rpc-url sepolia --broadcast --verify -vvvv
+forge script script/Vault.s.sol --rpc-url sepolia --broadcast --verify -vvvv
 
 # 本地节点
 anvil
