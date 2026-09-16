@@ -12,12 +12,12 @@
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
 | 1 | Sepolia 部署 | Day 6-10 | ✅ 完成 |
-| 2 | 合约升级 Proxy | Day 11-15 | ⬜ 未开始 |
+| 2 | 合约升级 Proxy | Day 11-15 | 🔄 Day 11 ✅ |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：阶段 2 · Day 11**（阶段 1 Sepolia ✅ · 串讲见 [`阶段1-串讲.md`](阶段1-串讲.md) · **20 tests passed**）
+**当前位置：阶段 2 · Day 12**（Day 11 Proxy 原理 ✅ · [`阶段2-Day11-Proxy原理.md`](阶段2-Day11-Proxy原理.md) · **20 tests passed**）
 
 ---
 
@@ -173,11 +173,13 @@
 
 > 目标：UUPS Proxy，V1 → V2 升级，storage 不丢。
 
-### Day 11 — 读 Proxy 原理 ⬜
+### Day 11 — 读 Proxy 原理 ✅
 
-- [ ] 读知识地图 01「Proxy / delegatecall / Storage Layout」
-- [ ] 读 `perpetual-contract` 里的 Proxy 设计
-- [ ] 理解：逻辑合约可换，storage 在 Proxy 里不变
+> 总结：[阶段2-Day11-Proxy原理.md](./阶段2-Day11-Proxy原理.md) · [知识库](https://worserole.github.io/web3-learning-docs/foundry/阶段2-Day11-Proxy原理.html)
+
+- [x] 读知识地图 01「Proxy / delegatecall / Storage Layout」
+- [ ] 可选：读 `perpetual-contract` 里的 Proxy 设计
+- [x] 理解：逻辑合约可换，storage 在 Proxy 里不变；UUPS vs Transparent 口播三题
 
 ---
 
@@ -345,6 +347,15 @@
 | 2026-09-16 | 7 | Counter Sepolia 部署 + Etherscan verify；tx `0xfc14…6cef` | 20 passed |
 | 2026-09-16 | 8 | Vault 部署 verify + `cast send` deposit / 读 balances；Counter increment 链上调用 | 20 passed |
 | 2026-09-16 | 9–10 | DEPLOY-流程 + 阶段1-串讲（知识地图 01 §9–15） | 20 passed |
+| 2026-09-16 | 11 | Proxy / delegatecall / layout；UUPS vs Transparent；阶段2-Day11 总结 | 20 passed |
+
+---
+
+## 阶段 2 · Day 11（摘要）
+
+完整稿：[阶段2-Day11-Proxy原理.md](./阶段2-Day11-Proxy原理.md)
+
+**30 秒版：** Proxy + delegatecall — 代码在 Implementation，状态在 Proxy；升级换 implementation 指针，布局兼容；计划用 UUPS。
 
 ---
 
