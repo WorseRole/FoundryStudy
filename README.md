@@ -136,12 +136,12 @@
 
 ---
 
-### Day 8 — 部署 Vault（部署 ✅）
+### Day 8 — 部署 Vault ✅
 
 - [x] 写 `script/Vault.s.sol`
-- [x] 部署 Vault 到 Sepolia（2026-09-16 · 见部署记录）
-- [ ] 链上 `deposit()` + 读 `balances`（`cast send` / Etherscan，见知识库 [Forge/Cast 链上命令](https://github.com/WorseRole/web3-learning-docs/blob/main/docs/foundry/forge-cast-%E9%93%BE%E4%B8%8A%E5%91%BD%E4%BB%A4.md)）
-- [ ] 在 Etherscan 读 `balances(yourAddress)` 与存入一致
+- [x] 部署 Vault 到 Sepolia（2026-09-16 · `0x605e…3D32`）
+- [x] 链上 `deposit()` + `cast call` 读 `balances`（私钥签名经 RPC 发交易，Etherscan 可查 tx 记录）
+- [x] Counter 加练：`cast send` → `increment()`，Read / `cast call` 读 `number`
 
 ---
 
@@ -337,7 +337,7 @@
 | 2026-09-12 | 5 | 阶段 0 复盘；forge fmt；20 tests 全绿 | 20 passed |
 | 2026-09-15 | 6 | Alchemy RPC + MetaMask + `.env` 三变量；Sepolia 模拟部署脚本通过 | 20 passed |
 | 2026-09-16 | 7 | Counter Sepolia 部署 + Etherscan verify；tx `0xfc14…6cef` | 20 passed |
-| 2026-09-16 | 8 | Vault Sepolia 部署 + verify → `0x605e…3D32` | 20 passed |
+| 2026-09-16 | 8 | Vault 部署 verify + `cast send` deposit / 读 balances；Counter increment 链上调用 | 20 passed |
 
 ---
 
