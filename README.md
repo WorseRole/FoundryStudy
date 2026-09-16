@@ -11,13 +11,13 @@
 | 阶段 | 内容 | 天数 | 状态 |
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
-| 1 | Sepolia 部署 | Day 6-10 | **进行中（Day 10）** |
+| 1 | Sepolia 部署 | Day 6-10 | ✅ 完成 |
 | 2 | 合约升级 Proxy | Day 11-15 | ⬜ 未开始 |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：Day 10**（Day 9 部署流程文档 ✅ · **20 tests passed**）
+**当前位置：阶段 2 · Day 11**（阶段 1 Sepolia ✅ · 串讲见 [`阶段1-串讲.md`](阶段1-串讲.md) · **20 tests passed**）
 
 ---
 
@@ -155,16 +155,17 @@
 
 ---
 
-### Day 10 — 阶段复盘 ⬜
+### Day 10 — 阶段复盘 ✅
 
-> **不要求 Etherscan 截图**；链上操作以 [知识库 · Forge/Cast 链上命令](https://worserole.github.io/web3-learning-docs/foundry/forge-cast-链上命令.html) 为准（`forge script` 部署、`cast send` / `cast call` 交互）。
+> 串讲定稿：[阶段1-串讲.md](./阶段1-串讲.md)（知识库 [同名页](https://worserole.github.io/web3-learning-docs/foundry/阶段1-串讲.html)）  
+> 链上命令：[Forge/Cast 链上命令](https://worserole.github.io/web3-learning-docs/foundry/forge-cast-链上命令.html)
 
-- [ ] **Sepolia 可查、可交互**：Counter / Vault 地址在 [部署记录](#部署记录)；需要时用 `cast call` / `cast send`（见知识库），不必再录屏
-- [ ] **读** [知识地图 01 · §9–15 交易生命周期](https://worserole.github.io/web3-learning-docs/web3/恢复基础，建立知识地图.html)（calldata、签名、RPC、nonce、Mempool、EVM、gas、Receipt）
-- [ ] **串讲 1～2 分钟**（录音或打字）：用 **自己的 Sepolia 经历**（部署 Counter/Vault、`increment`、`deposit`/`withdraw`、From 地址 **nonce** 在 Etherscan tx 详情可见）串起上述概念
-- [ ] （可选）在知识库 `阶段1-Sepolia` Day 10 下粘贴串讲稿，或新建 `阶段1-串讲.md`
+- [x] Counter / Vault Sepolia 可查、可交互（部署记录 + `cast`）
+- [x] 对照知识地图 01 §9–15（calldata、nonce、gas、生命周期）
+- [x] 串讲稿已写入 `阶段1-串讲.md`（含 30 秒极简版）
+- [x] 不要求 Etherscan 截图
 
-**阶段 1 完成标准：** testnet 部署 + 验证（Day 7–8 ✅）+ 能口述交易从签名到改 State 的全链路（Day 10）
+**阶段 1 完成标准：** testnet 部署 + 验证 + 交易全链路串讲 ✅
 
 ---
 
@@ -343,6 +344,15 @@
 | 2026-09-15 | 6 | Alchemy RPC + MetaMask + `.env` 三变量；Sepolia 模拟部署脚本通过 | 20 passed |
 | 2026-09-16 | 7 | Counter Sepolia 部署 + Etherscan verify；tx `0xfc14…6cef` | 20 passed |
 | 2026-09-16 | 8 | Vault 部署 verify + `cast send` deposit / 读 balances；Counter increment 链上调用 | 20 passed |
+| 2026-09-16 | 9–10 | DEPLOY-流程 + 阶段1-串讲（知识地图 01 §9–15） | 20 passed |
+
+---
+
+## 阶段 1 串讲（摘要）
+
+完整稿：[阶段1-串讲.md](./阶段1-串讲.md)
+
+**30 秒版：** Foundry 在 Sepolia 部署 Counter/Vault（`forge script --broadcast --verify`），`cast send` 调 `increment`、`deposit`、`withdraw`；私钥本地签名 → Alchemy RPC → 节点验 **nonce**/余额/签名 → EVM 执行 **calldata** → 改 Storage（`number`、`balances`）→ 付 **gas**；只读用 **`cast call`**。
 
 ---
 
