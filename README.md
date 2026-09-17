@@ -178,7 +178,7 @@
 > 总结：[阶段2-Day11-Proxy原理.md](./阶段2-Day11-Proxy原理.md) · [知识库](https://worserole.github.io/web3-learning-docs/foundry/阶段2-Day11-Proxy原理.html)
 
 - [x] 读知识地图 01「Proxy / delegatecall / Storage Layout」
-- [ ] 可选：读 `perpetual-contract` 里的 Proxy 设计
+- [x] 读 `perpetual-contract` 子账户 **EIP-1167 Clone**（非 Dealer UUPS；见阶段2-Day11 §6–7）
 - [x] 理解：逻辑合约可换，storage 在 Proxy 里不变；UUPS vs Transparent 口播三题
 
 ---

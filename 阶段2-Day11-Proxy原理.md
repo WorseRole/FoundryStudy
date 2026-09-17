@@ -53,7 +53,18 @@
 
 ---
 
-## 6. 30 秒极简版
+## 6. `perpetual-contract` 里的 Proxy（Clone）
+
+- **Dealer / Perpetual**：`new` 部署，**不是** UUPS。
+- **SubaccountFactory**：OZ `Clones.clone(template)` → [EIP-1167](https://eips.ethereum.org/EIPS/eip-1167) 最小代理。
+- 每个子账户 **独立地址 + 独立 storage**；逻辑共用 template；`init(owner)` 代替 constructor。
+- 与 Counter UUPS：**同是 delegatecall**；Clone 为 **省 gas、多实例**，UUPS 为 **同地址升级**。
+
+详见知识库 [§7](https://worserole.github.io/web3-learning-docs/foundry/阶段2-Day11-Proxy原理.html)。
+
+---
+
+## 7. 30 秒极简版
 
 Proxy + delegatecall：代码在 Implementation，状态在 Proxy。升级换 implementation 地址，布局必须兼容。我们用 UUPS；Transparent 是 Admin 在 Proxy 层升级。
 
@@ -62,7 +73,8 @@ Proxy + delegatecall：代码在 Implementation，状态在 Proxy。升级换 im
 ## Day 11 Checklist
 
 - [x] 读知识地图 01 Proxy / delegatecall / Storage Layout
-- [ ] 可选：perpetual-contract Proxy 设计 / OZ Upgradeable 文档
+- [x] 读 `perpetual-contract` Subaccount Clone（§6）
+- [ ] 可选：OZ Upgradeable 文档（Day 13）
 - [x] 三题口播过关
 
 **当前：** Day 12 → 写 `CounterV1` / `CounterV2`。
