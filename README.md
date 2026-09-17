@@ -12,12 +12,12 @@
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
 | 1 | Sepolia 部署 | Day 6-10 | ✅ 完成 |
-| 2 | 合约升级 Proxy | Day 11-15 | 🔄 Day 11 ✅ |
+| 2 | 合约升级 Proxy | Day 11-15 | 🔄 Day 12 ✅ |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：阶段 2 · Day 12**（Day 11 Proxy 原理 ✅ · [`阶段2-Day11-Proxy原理.md`](阶段2-Day11-Proxy原理.md) · **20 tests passed**）
+**当前位置：阶段 2 · Day 13**（Day 12 V1/V2 ✅ · [`阶段2-Day12-CounterV1V2.md`](阶段2-Day12-CounterV1V2.md) · **30 tests passed**）
 
 ---
 
@@ -183,11 +183,14 @@
 
 ---
 
-### Day 12 — 写 V1 / V2 ⬜
+### Day 12 — 写 V1 / V2 ✅
 
-- [ ] `CounterV1.sol`：现有 Counter 逻辑
-- [ ] `CounterV2.sol`：新增 `reset()` 或 `version()` 函数
-- [ ] **Storage Layout 不变**（不能改已有变量顺序）
+> 总结：[阶段2-Day12-CounterV1V2.md](./阶段2-Day12-CounterV1V2.md) · [知识库](https://worserole.github.io/web3-learning-docs/foundry/阶段2-Day12-CounterV1V2.html)
+
+- [x] `CounterV1.sol`：现有 Counter 逻辑
+- [x] `CounterV2.sol`：`reset()` + `version()`（`"2"`）
+- [x] **Storage Layout 不变**（`owner` slot0、`number` slot1）
+- [x] `test/CounterUpgrade.t.sol`（assert + revert）· 全仓 **30 tests**
 
 ---
 
@@ -348,6 +351,7 @@
 | 2026-09-16 | 8 | Vault 部署 verify + `cast send` deposit / 读 balances；Counter increment 链上调用 | 20 passed |
 | 2026-09-16 | 9–10 | DEPLOY-流程 + 阶段1-串讲（知识地图 01 §9–15） | 20 passed |
 | 2026-09-16 | 11 | Proxy / delegatecall / layout；UUPS vs Transparent；阶段2-Day11 总结 | 20 passed |
+| 2026-09-17 | 12 | CounterV1/V2 + CounterUpgrade 测试补全 | 30 passed |
 
 ---
 
@@ -356,6 +360,14 @@
 完整稿：[阶段2-Day11-Proxy原理.md](./阶段2-Day11-Proxy原理.md)
 
 **30 秒版：** Proxy + delegatecall — 代码在 Implementation，状态在 Proxy；升级换 implementation 指针，布局兼容；计划用 UUPS。
+
+---
+
+## 阶段 2 · Day 12（摘要）
+
+完整稿：[阶段2-Day12-CounterV1V2.md](./阶段2-Day12-CounterV1V2.md)
+
+**30 秒版：** V1 复制 Counter；V2 同 layout 加 `reset`/`version`；`CounterUpgrade` 测数值与 revert；链上同址保 state 留 Day 13–14。
 
 ---
 
