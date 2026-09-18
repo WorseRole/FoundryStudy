@@ -12,12 +12,12 @@
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
 | 1 | Sepolia 部署 | Day 6-10 | ✅ 完成 |
-| 2 | 合约升级 Proxy | Day 11-15 | 🔄 Day 12 ✅ |
+| 2 | 合约升级 Proxy | Day 11-15 | 🔄 Day 13 ✅ |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：阶段 2 · Day 13**（Day 12 V1/V2 ✅ · [`阶段2-Day12-CounterV1V2.md`](阶段2-Day12-CounterV1V2.md) · **30 tests passed**）
+**当前位置：阶段 2 · Day 14**（Day 13 UUPS Proxy ✅ · **32 tests passed**）
 
 ---
 
@@ -194,11 +194,12 @@
 
 ---
 
-### Day 13 — 部署 Proxy ⬜
+### Day 13 — 部署 Proxy ✅
 
-- [ ] 用 OpenZeppelin UUPS：`forge install OpenZeppelin/openzeppelin-contracts`
-- [ ] 部署 ERC1967Proxy + CounterV1 实现
-- [ ] 测试：通过 Proxy 地址调 `increment()`
+- [x] OpenZeppelin + `openzeppelin-contracts-upgradeable`（`.gitmodules` / `remappings.txt`）
+- [x] `CounterUpgradeableV1` + `ERC1967Proxy` + `initialize`
+- [x] `test/CounterUpgradeableProxyTest.t.sol` · `script/CounterUpgradeable.s.sol`
+- [ ] 可选：Sepolia `--broadcast` 填 README `CounterProxy` 地址
 
 ---
 
@@ -352,6 +353,7 @@
 | 2026-09-16 | 9–10 | DEPLOY-流程 + 阶段1-串讲（知识地图 01 §9–15） | 20 passed |
 | 2026-09-16 | 11 | Proxy / delegatecall / layout；UUPS vs Transparent；阶段2-Day11 总结 | 20 passed |
 | 2026-09-17 | 12 | CounterV1/V2 + CounterUpgrade 测试补全 | 30 passed |
+| 2026-09-18 | 13 | OZ UUPS + ERC1967Proxy + CounterUpgradeableV1 / 测试 / 部署脚本 | 32 passed |
 
 ---
 
