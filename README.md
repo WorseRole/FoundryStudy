@@ -12,12 +12,12 @@
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
 | 1 | Sepolia 部署 | Day 6-10 | ✅ 完成 |
-| 2 | 合约升级 Proxy | Day 11-15 | 🔄 Day 13 ✅ |
+| 2 | 合约升级 Proxy | Day 11-15 | 🔄 Day 14 ✅ |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：阶段 2 · Day 14**（Day 13 UUPS Proxy ✅ · **32 tests passed**）
+**当前位置：阶段 2 · Day 15**（Day 14 Sepolia 升级 ✅ · **34 tests passed**）
 
 ---
 
@@ -199,15 +199,16 @@
 - [x] OpenZeppelin + `openzeppelin-contracts-upgradeable`（`.gitmodules` / `remappings.txt`）
 - [x] `CounterUpgradeableV1` + `ERC1967Proxy` + `initialize`
 - [x] `test/CounterUpgradeableProxyTest.t.sol` · `script/CounterUpgradeable.s.sol`
-- [ ] 可选：Sepolia `--broadcast` 填 README `CounterProxy` 地址
+- [x] Sepolia `--broadcast`：Proxy + V1 impl（见部署记录 · 2026-09-20）
 
 ---
 
-### Day 14 — 执行升级 ⬜
+### Day 14 — 执行升级 ✅
 
-- [ ] 部署 CounterV2 实现
-- [ ] 调 `upgradeToAndCall` 升级到 V2
-- [ ] 验证：`number` 还在，新函数 `reset()` 可用
+- [x] `CounterUpgradeableV2` + `initializeV2` / `bump`
+- [x] `test/CounterUpgradeableProxyTest2.t.sol`（upgradeToAndCall + bump）
+- [x] `script/CounterUpgradeV2.s.sol` · Sepolia 升级（V2 impl · 见部署记录）
+- [x] 链上：`number` 仍为 2，`bump=100`，`version=2`
 
 ---
 
@@ -331,8 +332,9 @@
 |------|------|------|----------|
 | Counter | Sepolia | [0x00E60d96e3ccbe461700bEF3FC2B8b61EfAd2A1c](https://sepolia.etherscan.io/address/0x00E60d96e3ccbe461700bEF3FC2B8b61EfAd2A1c) | 2026-09-16 |
 | Vault | Sepolia | [0x605edB790b07dA3809E61ba24fbd4a29b9ad3D32](https://sepolia.etherscan.io/address/0x605edB790b07dA3809E61ba24fbd4a29b9ad3D32) | 2026-09-16 |
-| CounterProxy | Sepolia | _待填_ | _待填_ |
-| CounterV2 | Sepolia | _待填_ | _待填_ |
+| CounterProxy（UUPS 门面） | Sepolia | [0x901D9F0d66db49226476372e1B63684bFEbE4F73](https://sepolia.etherscan.io/address/0x901D9F0d66db49226476372e1B63684bFEbE4F73) | 2026-09-20 |
+| CounterUpgradeable V1（impl） | Sepolia | [0xC2fB0cB014D76fF0beDFE4CfaB8Aafba77036550](https://sepolia.etherscan.io/address/0xC2fB0cB014D76fF0beDFE4CfaB8Aafba77036550) | 2026-09-20 |
+| CounterUpgradeable V2（impl） | Sepolia | [0x22b7144CFd9D2A7e5936EB8418C2c33cf6dd6AC1](https://sepolia.etherscan.io/address/0x22b7144CFd9D2A7e5936EB8418C2c33cf6dd6AC1) | 2026-09-20 |
 
 ---
 
@@ -354,6 +356,7 @@
 | 2026-09-16 | 11 | Proxy / delegatecall / layout；UUPS vs Transparent；阶段2-Day11 总结 | 20 passed |
 | 2026-09-17 | 12 | CounterV1/V2 + CounterUpgrade 测试补全 | 30 passed |
 | 2026-09-18 | 13 | OZ UUPS + ERC1967Proxy + CounterUpgradeableV1 / 测试 / 部署脚本 | 32 passed |
+| 2026-09-20 | 14 | V2 + upgrade 测试；Sepolia Proxy 升级 V2（bump/initV2） | 34 passed |
 
 ---
 
