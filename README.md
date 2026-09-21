@@ -12,12 +12,12 @@
 |------|------|------|------|
 | 0 | Foundry 热身 | Day 1-5 | ✅ 完成 |
 | 1 | Sepolia 部署 | Day 6-10 | ✅ 完成 |
-| 2 | 合约升级 Proxy | Day 11-15 | 🔄 Day 14 ✅ |
+| 2 | 合约升级 Proxy | Day 11-15 | ✅ 完成 |
 | 3 | 项目深入（永续 + Kinza） | Day 16-21 | ⬜ 未开始 |
 | 4 | 面试准备 | Day 22-26 | ⬜ 未开始 |
 | 5 | 简历定稿 + 投递 | Day 27-30 | ⬜ 未开始 |
 
-**当前位置：阶段 2 · Day 15**（Day 14 Sepolia 升级 ✅ · **34 tests passed**）
+**当前位置：阶段 3 · Day 16**（阶段 2 串讲见 [`阶段2-串讲.md`](阶段2-串讲.md) · **34 tests passed**）
 
 ---
 
@@ -212,11 +212,12 @@
 
 ---
 
-### Day 15 — 阶段复盘 ⬜
+### Day 15 — 阶段复盘 ✅
 
-- [ ] 写测试：fork 或本地测 upgrade 流程
-- [ ] 理解升级风险：Storage 冲突、权限、初始化（知识地图 03）
-- [ ] 记录 Proxy 地址 + V1/V2 实现地址
+- [x] 本地 upgrade 测试（`CounterUpgradeableProxyTest` / `ProxyTest2`）
+- [x] 升级风险：Storage / init / UUPS（见 [阶段2-串讲.md](./阶段2-串讲.md)）
+- [x] Sepolia Proxy + V1/V2 impl 记录
+- [ ] 自练：30 秒 / 2 分钟口播录音 1 遍
 
 **阶段 2 完成标准：** 能讲清 delegatecall、Proxy、升级注意事项
 
@@ -357,6 +358,7 @@
 | 2026-09-17 | 12 | CounterV1/V2 + CounterUpgrade 测试补全 | 30 passed |
 | 2026-09-18 | 13 | OZ UUPS + ERC1967Proxy + CounterUpgradeableV1 / 测试 / 部署脚本 | 32 passed |
 | 2026-09-20 | 14 | V2 + upgrade 测试；Sepolia Proxy 升级 V2（bump/initV2） | 34 passed |
+| 2026-09-21 | 15 | 阶段2-串讲 + 口播稿 | 34 passed |
 
 ---
 
@@ -373,6 +375,14 @@
 完整稿：[阶段2-Day12-CounterV1V2.md](./阶段2-Day12-CounterV1V2.md)
 
 **30 秒版：** V1 复制 Counter；V2 同 layout 加 `reset`/`version`；`CounterUpgrade` 测数值与 revert；链上同址保 state 留 Day 13–14。
+
+---
+
+## 阶段 2 串讲（摘要 · Day 15）
+
+完整稿：[阶段2-串讲.md](./阶段2-串讲.md) · [知识库](https://worserole.github.io/web3-learning-docs/foundry/阶段2-串讲.html)
+
+**30 秒版：** UUPS + ERC1967Proxy；用户只调 Proxy，delegatecall 改 Proxy storage；Day13 开业 Day14 upgradeToAndCall；layout + _authorizeUpgrade + _disableInitializers。
 
 ---
 
